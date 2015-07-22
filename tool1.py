@@ -2,16 +2,20 @@
 #if you create any new pieces of this in IDLE or ArcGIS, just copy and paste the new code
 #after making a change, you can select "Create a new branch..." below, by the green button to make an alternate copy
 #after making a change you can also select "Commit directly..." to overwrite the original file
-#for error corrections its best to commit directly, but as we make big changes we should make branches
-# we can then merge branches into the original script later as we decide they are official
+
+#I like using the comma method for importing multiple modules, as below -Chris
+import arcpy, os, env
 
 
-import arcpy #this lets us use geoprocessing functions from ArcGIS, like an initial rule
 
-print "GEOG 565"
-print "Sage Tezak, Sara Gregory, & Chris Beddow" #these print lines are just a test
-
-#next we will build off of an existing tool from ArcGIS and modify its script, using it as a template
-
-#this is a test 
-#This is Sara
+#below we will wrap the tool in a try-except function so we can generate error messages. I think this is all we need. -Chris
+try:
+  #not sure if using current workspace is correct, thoughts? -Chris
+  env.workspace = "CURRENT"
+  
+ #In here we will have our actual tool -Chris
+ 
+except arcpy.ExecuteError:
+    print arcpy.GetMessages(2)
+except:
+    print "There has been a nontool error."
