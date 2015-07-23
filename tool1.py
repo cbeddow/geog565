@@ -4,6 +4,7 @@
 #after making a change you can also select "Commit directly..." to overwrite the original file
 
 #I like using the comma method for importing multiple modules, as below -Chris
+#Thats a good one.  Seems more efficient -Sara
 import arcpy, os, env
 
 
@@ -11,6 +12,7 @@ import arcpy, os, env
 #below we will wrap the tool in a try-except function so we can generate error messages. I think this is all we need. -Chris
 try:
   #not sure if using current workspace is correct, thoughts? -Chris
+  #I have been thinking that "CURRENT" was only to be used in the Python window of ArcMap??? -Sara
   env.workspace = "CURRENT"
   
  #In here we will have our actual tool -Chris
