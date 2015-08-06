@@ -18,12 +18,26 @@ try:
   
  #In here we will have our actual tool -Chris
  
+ # MODULE1
+ 
+ # MODULE2
+ 
+ # MODULE3
+ 
+ # MODULE4 - Geocode
+ 
+ # MODULE5
+ 
+ # MODULE6
+ 
  #added function below that is a start on calculating FAA regions using the state
  # called Flight Standards District Office (FSDO) regions
  # sources: https://www.faa.gov/mobile/index.cfm?event=office.regions
  # what is a pain is that some counties in Kentucky and Illinois are part of a different region than the rest of the state
  # we can fix this by finding the zip codes for those counties and adding it to the region
  # alternate idea is we can get an FSDO shapefile made first, and after geocoding we can use "clip" based on geometry instead of the below example
+ 
+# MODULE7
 def FSDOfinder(state):
 northwest = [CO, ID, MT, OR, UT, WA, WY]
 for state in states:
@@ -36,3 +50,5 @@ except arcpy.ExecuteError:
     print arcpy.GetMessages(2)
 except:
     print "There has been a nontool error."
+
+#end
