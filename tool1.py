@@ -21,7 +21,23 @@ try:
  # MODULE1
  
  # MODULE2
- 
+ # Below is the script used for geocoding the 5-digit zip. This is a cut and paste from PythonWin, so import arcpy and such won't be needed here.
+import arcpy
+from arcpy import env
+env.workspace = "C:/GIS/final/pythonfinal.gdb"
+
+# Creat Address Locator
+# <locator field alias> <dataset field name> VISIBLE NONE
+arcpy.CreateAddressLocator_geocoding("US Address - ZIP 5-Digit", "uszips 'Primary Table'", "'Feature ID' <None> VISIBLE NONE;'ZIP' ZIP VISIBLE NONE;'City' <None> VISIBLE NONE;'State' <None> VISIBLE NONE", "NationalZip_AddressLocator", "")
+
+# Geolocate Addresses by 5-Digit Zip
+# Set local variables:
+address_table = "aircraft"
+address_locator = "NationalZip_AddressLocator"
+geocode_result = "geocode_result"
+
+arcpy.GeocodeAddresses_geocoding(address_table, address_locator, "ZIP ZIP_CODE VISIBLE NONE", geocode_result, "STATIC")
+
  # MODULE3
  
  # MODULE4 - Geocode
