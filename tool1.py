@@ -19,11 +19,50 @@ try:
  #In here we will have our actual tool -Chris
  
  # MODULE1
- 
+ import csv
+import time
+
+time.sleep(7)
+
+arcpy.env.workspace = "CURRENT"
+
+master = "MASTER.txt"
+table = "MASTER.csv"
+result = "aircraft.csv"
+need = ["\xef\xbb\xbfN-NUMBER", "NAME", "STREET", "STREET2", "CITY", "STATE", "ZIP CODE", "REGION", "TYPE AIRCRAFT"]
+StartTime = time.clock()
+
+in_txt = csv.reader(open(master, "rb"), delimiter = ',')
+out_csv = csv.writer(open(table, 'wb'))
+out_csv.writerows(in_txt)
+del in_txt
+del out_csv
+
+
+EndTime = time.clock()
+TotalTime = str(EndTime - StartTime)
+print "Conversion Operation Complete in " + TotalTime + " seconds."
+print "MASTER.csv created."
+
+StartTime = time.clock()
+
+with open(table) as infile, open(result, "wb") as outfile:
+    r = csv.DictReader(infile)
+    w = csv.DictWriter(outfile, need, extrasaction="ignore")
+    w.writeheader()
+    for row in r:
+        w.writerow(row)
+del result
+
+EndTime = time.clock()
+TotalTime2 = str(EndTime - StartTime)
+print "Cleaning Operation Complete in " + TotalTime2 + " seconds."
+print "aircraft.csv created."
+
+#end MODULE1
+#aircraft.csv is ready for geocoding
  # MODULE2
  # Below is the script used for geocoding the 5-digit zip. This is a cut and paste from PythonWin, so import arcpy and such won't be needed here.
-import arcpy
-from arcpy import env
 env.workspace = "C:/GIS/final/pythonfinal.gdb"
 
 # Creat Address Locator
